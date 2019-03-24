@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Basic Droppable - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="themes/icon.css">
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="jquery.easyui.min.js"></script>
+</head>
+<body>
+
+	 <div id="#dd2"></div>
+	 <script type="text/javascript">
+12       $(function(){
+13           //使用easyloader加载dialog模块使用到的相关js和css样式
+14           easyloader.load('dialog',function(){
+15               /*使用JavaScript动态创建EasyUI的Dialog的步骤：
+16                 1、定义一个div，并给div指定一个id
+17                 2、使用Jquery选择器选中该div，然后调用dialog()方法就可以创建EasyUI的Dialog
+18                 */
+19                 //使用自定义参数创建EasyUI的Dialog
+20                 $('#dd2').dialog({
+21                     title: '使用JavaScript创建的Dialog',
+22                     width: 400,
+23                     height: 200,
+24                     closed: false,
+25                     cache: false,
+26                     modal: true
+27                 });
+28           });
+29           
+30           easyloader.locale = "zh_CN";
+31           //easyloader.load 还有一个别名 using 定义在 window 对象上
+32           //使用easyloader加载messager模块使用到的相关js和css样式
+33         using("messager", function () {
+34             alert("加载成功！");
+35             $("#btnAlert").click(function () {
+36                 $.messager.alert('Warning', 'The warning message');
+37             });
+38         });
+39       });
+40   </script>
+41   
+12       $(function(){
+13           //使用easyloader加载dialog模块使用到的相关js和css样式
+14           easyloader.load('dialog',function(){
+15               /*使用JavaScript动态创建EasyUI的Dialog的步骤：
+16                 1、定义一个div，并给div指定一个id
+17                 2、使用Jquery选择器选中该div，然后调用dialog()方法就可以创建EasyUI的Dialog
+18                 */
+19                 //使用自定义参数创建EasyUI的Dialog
+20                 $('#dd2').dialog({
+21                     title: '使用JavaScript创建的Dialog',
+22                     width: 400,
+23                     height: 200,
+24                     closed: false,
+25                     cache: false,
+26                     modal: true
+27                 });
+28           })});
+
+</script>
+</body>
+</html>

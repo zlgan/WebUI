@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Js中原型Prototype</title>
+	<script src="jquery-3.3.1.js"></script>
+<script type="text/javascript">
+	
+
+var a = {};
+var b = function(){};
+b.prototype.getAge=function(){console.log('20岁');};
+var c=new b();
+var d=new b();
+var str1="test";
+
+
+console.log("----------------__proto__与prototype----------------------")
+//prototype是函数的属性
+//所有的对象（包括函数）都有__proto__属性
+console.log(a.__proto__);  //Object {}
+console.log(b.__proto__);  //function() {}
+console.log(b.prototype);  //b {}
+console.log(a.prototype);  //undefined
+
+//一个对象的__proto__属性指向的是其构造函数的prototype对象
+//可以看出来a的构造函数是Object;Object.prototype是一个普通的对象定义了如：toString(),valueOf()等所有对象都有的公共方法。                                                                                    
+console.log(a.__proto__==a.constructor.prototype);//true
+console.log(c.__proto__.getAge());//20岁
+console.log(c.constructor.prototype.getAge());//20岁
+console.log(b.prototype.getAge());//20岁
+
+//原型链
+console.log("----------------对象原型链条----------------------");
+var obj1=new b();
+console.log(obj1.__proto__) // obj1的构造器即b的原型对象 
+console.log(obj1.__proto__.__proto__.toString()) // 构造器Object的原型对象 
+console.log(obj1.__proto__.__proto__.__proto__) //null
+
+console.log("----------------函数原型链条----------------------");
+console.log(b.prototype);
+console.log(b.prototype.prototype);
+
+
+console.log("----------------查看构造函数----------------------");
+console.log(a.constructor);//Object
+console.log(b.constructor);//Function
+console.log(str1.constructor);//String
+console.log(true.constructor);//Boolean
+console.log(true.__proto__);
+
+/*
+	1、所有的对象都继承其原型对象，根原型为Object.prototype,所以在此对象上定义的所有属性方法是所有对象都可以访问。
+	2、定义的函数fun1本质上是Function类型一个对象，所以上述规则对fun1任然适用;
+	3、函数的根就是Function，对象的根是Object
+*/
+
+
+console.log("----------------原型继承实例----------------------");
+
+function animal(anniType){
+	this.anniType=anniType;
+};
+animal.prototype.Run=function(){console.log("running...")}
+
+function bird(bdType){
+	this.anniType=bdType;
+}
+bird.prototype=new animal();
+bird.prototype.fly=function (){
+	console.log("flying...");
+}
+//重写基类方法
+bird.prototype.Run=function(){
+	console.log("bird run");
+}
+var bd1=new bird();
+bd1.Run();
+bd1.fly();
+
+var ani=new animal();
+//ani.fly(); //Uncaught TypeError: ani.fly is not a function
+ani.Run();
+
+
+
+function mysuper(name)
+{
+	this.name=name;
+	this.age=20;
+	this.Show=function(){console.log(this.age);}
+}
+
+mysuper.prototype.Say=function(){console.log("hello"+this.name);}
+
+
+
+function sub(name)
+{
+	mysuper.call(this)
+}
+
+
+var sb=new sub("gzl");
+sb.Show();
+//sb.Say(); Uncaught TypeError: sb.Say is not a function
+
+
+
+</script>
+	
+</head>
+<body>
+
+<input type="text"/>
+</body>
+</html>

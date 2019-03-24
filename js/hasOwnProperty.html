@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>this 关键字</title>
+	<script src="jquery-3.3.1.js"></script>
+	
+	
+	
+<script type="text/javascript">
+	
+	Array.prototype.test=function(){}
+
+
+	var arr=[{age:1},{age:2}];
+
+	for(var i in arr){
+		if(arr.hasOwnProperty(i)){
+			console.log(arr[i].age);
+		}
+	}
+
+</script>
+	
+</head>
+<body>
+
+
+	
+<input type="button" id="btn" name="bbb" value="ccc" />
+	
+</body>
+</html>
